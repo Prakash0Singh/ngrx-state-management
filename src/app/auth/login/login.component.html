@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h3 class="text-center">Login</h3>
+            <hr>
+            <form [formGroup]="loginForm" (ngSubmit)="onUserlogin()">
+                <div class="mb-3">
+                    <label for="userid">User-Id</label>
+                    <input type="email" id="userid" class="form-control" formControlName="userid">
+                    <small class="m-0 text-danger" *ngIf="log['userid'].touched && log['userid'].errors?.['required']">User-ID is Required</small>
+                    
+                </div>
+                <div class="mb-3">
+                    <label for="userpass">Password</label>
+                    <input type="password" id="userpass" class="form-control" formControlName="userpass">
+                    <small class="m-0 text-danger" *ngIf="log['userpass'].touched && log['userpass'].errors?.['required']">Password is Required</small>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success" [disabled]="!loginForm.valid">Log in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

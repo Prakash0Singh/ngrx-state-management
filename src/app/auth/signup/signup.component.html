@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h3>Sign-Up </h3>
+            <hr>
+            <form [formGroup]="signUpForm" (ngSubmit)="onsignupForm()">
+            <div class="mb-3">
+                    <label for="email">Email</label>
+                    <input type="email"  id="email" class="form-control" formControlName="email" >
+                    <small class="m-0 text-danger" *ngIf="get['email'].touched && get['email'].errors?.['required']">Email is Required</small>
+                    <small class="m-0 text-danger" *ngIf="get['email'].touched && get['email'].errors?.['email']">Valid E-mail is Required</small>
+
+            </div>
+            <div class="mb-3">
+                <label for="password">Password</label>
+                <input type="password"  id="password" class="form-control"  formControlName="password">
+                <small class="m-0 text-danger" *ngIf="get['password'].touched && get['password'].errors?.['required']">Password is Required</small>
+                <small class="m-0 text-danger" *ngIf="get['password'].touched && get['password'].errors?.['minlength']">Minimum 8 letter password is Required</small>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary btn-small" [disabled]="!signUpForm.valid">Sign-Up</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
