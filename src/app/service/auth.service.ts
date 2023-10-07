@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.development';
 import { Auth } from "@angular/fire/auth"
 import { AuthResponse } from '../store/models/authresponse.model';
 import { Observable } from 'rxjs';
@@ -19,12 +19,12 @@ export class AuthService {
 
   getUserlogin(email: string, password: string): Observable<AuthResponse> {
     let data = { email, password, returnSecureToken: true }
-    return this.http.post<AuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBllkNUPp_DWtcPbNGzGeK2XTWH8oY-gxE`, data)
+    return this.http.post<AuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseConfig.apiKey}`, data)
   }
 
   createNewUser(email: string, password: string): Observable<AuthResponse> {
     let data = { email, password, returnSecureToken: true }
-    return this.http.post<AuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBllkNUPp_DWtcPbNGzGeK2XTWH8oY-gxE`, data)
+    return this.http.post<AuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseConfig.apiKey}`, data)
   }
 
   formateUser(data: AuthResponse) {
